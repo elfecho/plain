@@ -1,0 +1,45 @@
+function game_over(){
+		backLayer.die();
+		backLayer = new LSprite();
+		addChild(backLayer);
+		backLayer.graphics.drawRect(0,'#000',[0,0,480,852],true,'rgba(0,0,0,0.5)');
+		var over_text = new LTextField();
+		var reset_text = new LTextField();
+		var your_text = new LTextField();
+		var max_text = new LTextField();
+		over_text.text='GAME OVER';
+		over_text.size=55;
+		over_text.family='楷体';
+		over_text.color='red';
+		over_text.x=(LGlobal.width-over_text.getWidth())/2;
+		over_text.y=-over_text.getHeight();
+		reset_text.text='重新开始';
+		reset_text.size=35;
+		reset_text.family='楷体';
+		reset_text.color='#fff';
+		reset_text.x=-reset_text.getWidth();
+		reset_text.y=(LGlobal.height-reset_text.getHeight())/2;
+		your_text.text='你的分数为'+score;
+		your_text.size=25;
+		your_text.family='楷体';
+		your_text.color='#fff';
+		your_text.x=LGlobal.width+your_text.getWidth();
+		your_text.y=(LGlobal.height-your_text.getHeight())/2+45;
+		max_text.text='最高分数为'+score;
+		max_text.size=25;
+		max_text.family='楷体';
+		max_text.color='#fff';
+		max_text.x=-max_text.getWidth();
+		max_text.y=(LGlobal.height-max_text.getHeight())/2+75;
+		LTweenLite.to(over_text,2,{y:(LGlobal.height-over_text.getHeight())/2-180,ease:LEasing.Quad.easeInOut});
+		LTweenLite.to(reset_text,2,{x:(LGlobal.width-reset_text.getWidth())/2,ease:LEasing.Quad.easeInOut});
+		LTweenLite.to(your_text,2.5,{x:(LGlobal.width-your_text.getWidth())/2,ease:LEasing.Quad.easeInOut});
+		LTweenLite.to(max_text,3,{x:(LGlobal.width-max_text.getWidth())/2,ease:LEasing.Quad.easeInOut});
+		/*backLayer.graphics.drawRect(3,'#fff',[start_text.x-10,start_text.y-10,start_text.getWidth()+20,start_text.getHeight()+20]);*/
+		backLayer.addChild(over_text);
+		backLayer.addChild(reset_text);
+		backLayer.addChild(your_text);
+		backLayer.addChild(max_text);
+		player1.hp=3;
+		reset_text.addEventListener(LMouseEvent.MOUSE_DOWN,game_start);
+	}
